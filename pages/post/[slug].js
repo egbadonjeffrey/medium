@@ -1,10 +1,16 @@
+import ArticleMain from "../../components/ArticleMain";
 import ReadersNav from "../../components/ReaderNav";
 import Recommendations from "../../components/Recommendations";
 
+const styles = {
+  content: "flex",
+};
+
 const Post = () => {
   return (
-    <div>
+    <div className={styles.content}>
       <ReadersNav />
+      <ArticleMain />
       <Recommendations />
     </div>
   );
