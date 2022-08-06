@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import PostCard from "../components/PostCard";
-import Link from "next/link";
 import { useContext } from "react";
 import { MediumContext } from "../context/MediumContext";
 
@@ -12,25 +11,23 @@ const styles = {
 };
 
 export default function Home() {
-  const { users } = useContext(MediumContext);
+  const { posts } = useContext(MediumContext);
 
-  console.log(users);
+  console.log(posts);
 
   return (
-    <Link href={`/post/123`}>
-      <div className={styles.wrapper}>
-        <Header />
-        <Banner />
-        <div className={styles.main}>
-          <div className={styles.container}>
-            <div className={styles.postsList}>
-              <PostCard />
-              <PostCard />
-              <PostCard />
-            </div>
+    <div className={styles.wrapper}>
+      <Header />
+      <Banner />
+      <div className={styles.main}>
+        <div className={styles.container}>
+          <div className={styles.postsList}>
+            {posts.map((post) => (
+              <PostCard post={post} key={post.id} />
+            ))}
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import Logo from "../image/logo.png";
 import { FiBookmark } from "react-icons/fi";
 
@@ -19,46 +21,49 @@ const styles = {
   bookmarkContainer: "cursor-pointer",
 };
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
+  const { id } = post;
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.postDetails}>
-        <div className={styles.authorContainer}>
-          <div className={styles.authorImageContainer}>
-            <Image
-              src={Logo}
-              className={styles.authorImage}
-              width={40}
-              height={40}
-              alt="Author Image"
-            />
+    <Link href={`/post/${id}`}>
+      <div className={styles.wrapper}>
+        <div className={styles.postDetails}>
+          <div className={styles.authorContainer}>
+            <div className={styles.authorImageContainer}>
+              <Image
+                src={Logo}
+                className={styles.authorImage}
+                width={40}
+                height={40}
+                alt="Author Image"
+              />
+            </div>
+
+            <div className={styles.authorName}> Egbadon Jeffrey</div>
           </div>
 
-          <div className={styles.authorName}> Egbadon Jeffrey</div>
+          <h1 className={styles.title}>
+            7 Free Tools That Will Make You More Productive In 2022
+          </h1>
+          <div className={styles.briefing}>
+            Productivity is a skill that can be learned.
+          </div>
+
+          <div className={styles.detailsContainer}>
+            <span className={styles.articleDetails}>
+              August 4 | 5min read |{" "}
+              <span className={styles.category}>productivity</span>{" "}
+            </span>
+            <span>
+              <FiBookmark className="h-5 w-5" />
+            </span>
+          </div>
         </div>
 
-        <h1 className={styles.title}>
-          7 Free Tools That Will Make You More Productive In 2022
-        </h1>
-        <div className={styles.briefing}>
-          Productivity is a skill that can be learned.
-        </div>
-
-        <div className={styles.detailsContainer}>
-          <span className={styles.articleDetails}>
-            August 4 | 5min read |{" "}
-            <span className={styles.category}>productivity</span>{" "}
-          </span>
-          <span>
-            <FiBookmark className="h-5 w-5" />
-          </span>
+        <div className={styles.thumbnailContainer}>
+          <Image src={Logo} height={100} width={100} alt="Post Thumbnail" />
         </div>
       </div>
-
-      <div className={styles.thumbnailContainer}>
-        <Image src={Logo} height={100} width={100} alt="Post Thumbnail" />
-      </div>
-    </div>
+    </Link>
   );
 };
 
