@@ -78,8 +78,7 @@ const ArticleMain = () => {
             />
           </div>
           <h1 className={styles.title}>
-            {" "}
-            7 Free Tools that will make you more productive in 2022{" "}
+            7 Free Tools that will make you more productive in 2022
           </h1>
           <h4 className={styles.subtitle}>
             <div>Egbadon Jeffrey, August 5th</div>
