@@ -32,7 +32,7 @@ const styles = {
   articleText: "font-mediumSerif text-[1.4rem] text-[#292929]",
 };
 
-const ArticleMain = () => {
+const ArticleMain = ({ post, author }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
