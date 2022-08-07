@@ -33,6 +33,8 @@ const styles = {
 };
 
 const ArticleMain = ({ post, author }) => {
+  console.log(author, "Checking");
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -48,7 +50,7 @@ const ArticleMain = ({ post, author }) => {
               />
             </div>
             <div className={styles.column}>
-              <div>Egbadon Jeffrey</div>
+              <div> {author?.data?.name} </div>
               <div className={styles.postDetails}>
                 <span>June 15 | 7 min read</span>{" "}
                 <span className={styles.listenButton}>
@@ -84,18 +86,7 @@ const ArticleMain = ({ post, author }) => {
             <div>Egbadon Jeffrey, August 5th</div>
             <div>Brief: Productivity is a skill that can be learned</div>
           </h4>
-          <div className={styles.articleText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            voluptatibus saepe unde. Beatae odio porro nisi omnis nam voluptate
-            iure, officiis aperiam dolorem atque nulla molestias. Aliquam sint
-            eligendi similique! Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Corporis, architecto. Magni alias aperiam nostrum
-            modi neque, soluta eius adipisci eveniet tempore minus inventore
-            repellat aut beatae totam velit aliquam et temporibus tempora porro,
-            doloremque explicabo commodi reprehenderit? Corrupti, a. Odit,
-            doloremque. Voluptas autem eos repellendus. Ducimus incidunt sunt
-            veniam facilis.
-          </div>
+          <div className={styles.articleText}>{post?.data?.body}</div>
         </div>
       </div>
     </div>
