@@ -67,7 +67,7 @@ const PostCard = ({ post }) => {
                 day: "numeric",
                 month: "short",
               })}{" "}
-              | {postLength} |{" "}
+              | {postLength} min read |{" "}
               <span className={styles.category}>{category}</span>{" "}
             </span>
             <span>

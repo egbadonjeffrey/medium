@@ -52,7 +52,15 @@ const ArticleMain = ({ post, author }) => {
             <div className={styles.column}>
               <div> {author?.data?.name} </div>
               <div className={styles.postDetails}>
-                <span>June 15 | 7 min read</span>{" "}
+                <span>
+                  {" "}
+                  {new Date(post?.data?.postedOn).toLocaleString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}{" "}
+                  | {post?.data?.postLength} min read
+                </span>{" "}
                 <span className={styles.listenButton}>
                   <AiFillPlayCircle /> Listen
                 </span>
@@ -79,12 +87,17 @@ const ArticleMain = ({ post, author }) => {
               alt="Banner"
             />
           </div>
-          <h1 className={styles.title}>
-            7 Free Tools that will make you more productive in 2022
-          </h1>
+          <h1 className={styles.title}>{post?.data?.title}</h1>
           <h4 className={styles.subtitle}>
-            <div>Egbadon Jeffrey, August 5th</div>
-            <div>Brief: Productivity is a skill that can be learned</div>
+            <div>
+              {author?.data?.name},{" "}
+              {new Date(post?.data?.postedOn).toLocaleString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </div>
+            <div>{`Brief: ${post?.data?.brief}`}</div>
           </h4>
           <div className={styles.articleText}>{post?.data?.body}</div>
         </div>
