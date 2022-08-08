@@ -1,4 +1,9 @@
 import Image from "next/image";
+import { useContext } from "react";
+
+import { MediumContext } from "../context/MediumContext";
+import { auth } from "../Firebase";
+
 import Logo from "../image/logo.png";
 
 const styles = {
@@ -11,6 +16,8 @@ const styles = {
 };
 
 const Header = () => {
+  const { handleUserAuth, currentUser } = useContext(MediumContext);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -23,12 +30,21 @@ const Header = () => {
             alt="logo"
           />
         </div>
-        <div className={styles.bannerNav}>
-          <div>Our Story</div>
-          <div>Membership</div>
-          <div>Sign in</div>
-          <div className={styles.accentedButton}>Get Started</div>
-        </div>
+        {currentUser ? (
+          <div className={styles.bannerNav}>
+            <div>Our Story</div>
+            <div>Membership</div>
+            <div className={styles.accentedButton}>Write</div>
+            <div className={styles.accentedButton}>Get Unlimited Access</div>
+          </div>
+        ) : (
+          <div className={styles.bannerNav}>
+            <div>Our Story</div>
+            <div>Membership</div>
+            <div onClick={handleUserAuth}>Sign In</div>
+            <div className={styles.accentedButton}>Get Started</div>
+          </div>
+        )}
       </div>
     </div>
   );

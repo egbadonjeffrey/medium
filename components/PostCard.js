@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { db } from "../Firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
 import Logo from "../image/logo.png";
 import { FiBookmark } from "react-icons/fi";
@@ -26,19 +26,24 @@ const styles = {
   thumbnailContainer: "flex-1",
 };
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, currentUser }) => {
   const [authorData, setAuthorData] = useState(null);
   const { id } = post;
-  const { title, brief, postedOn, postLength, category, bannerImage } =
+  const { title, brief, postedOn, postLength, category, bannerImage, author } =
     post.data;
 
   useEffect(() => {
     const getAuthorData = async () => {
-      setAuthorData((await getDoc(doc(db, "users", post.data.author))).data());
+      const docRef = doc(db, "users", author);
+      const docSnap = await getDoc(docRef);
+
+      setAuthorData(docSnap.data());
     };
 
     getAuthorData();
   }, []);
+
+  console.log(authorData);
 
   return (
     <Link href={`/post/${id}`}>
@@ -47,7 +52,7 @@ const PostCard = ({ post }) => {
           <div className={styles.authorContainer}>
             <div className={styles.authorImageContainer}>
               <Image
-                src={`https://res.cloudinary.com/demo/image/fetch/${authorData?.imageUrl}`}
+                src={`https://res.cloudinary.com/demo/image/fetch/${authorData.imageUrl}`}
                 className={styles.authorImage}
                 width={40}
                 height={40}
