@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import Modal from "react-modal";
 
@@ -6,6 +8,7 @@ import { MediumContext } from "../context/MediumContext";
 import { auth } from "../Firebase";
 
 import Logo from "../image/logo.png";
+import PostModal from "./PostModal";
 
 Modal.setAppElement("#__next");
 
@@ -36,6 +39,8 @@ const styles = {
 const Header = () => {
   const { handleUserAuth, currentUser } = useContext(MediumContext);
 
+  const router = useRouter();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -52,7 +57,9 @@ const Header = () => {
           <div className={styles.bannerNav}>
             <div>Our Story</div>
             <div>Membership</div>
-            <div className={styles.accentedButton}>Write</div>
+            <Link href={`/?addNew=1`}>
+              <div className={styles.accentedButton}>Write</div>
+            </Link>
             <div className={styles.accentedButton}>Get Unlimited Access</div>
           </div>
         ) : (
@@ -65,11 +72,11 @@ const Header = () => {
         )}
       </div>
       <Modal
-        isOpen={true}
-        onRequestClose={() => console.log("CLOSE")}
+        isOpen={Boolean(router.query.addNew)}
+        onRequestClose={() => router.push("/")}
         style={customStyles}
       >
-        <div> I AM WRITING A MODAL </div>
+        <PostModal />
       </Modal>
     </div>
   );
