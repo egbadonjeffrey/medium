@@ -43,7 +43,7 @@ const PostCard = ({ post, currentUser }) => {
     getAuthorData();
   }, []);
 
-  console.log(authorData);
+  // console.log(authorData);
 
   return (
     <Link href={`/post/${id}`}>
@@ -52,7 +52,7 @@ const PostCard = ({ post, currentUser }) => {
           <div className={styles.authorContainer}>
             <div className={styles.authorImageContainer}>
               <Image
-                src={`https://res.cloudinary.com/demo/image/fetch/${authorData.imageUrl}`}
+                src={`https://res.cloudinary.com/demo/image/fetch/${authorData?.imageUrl}`}
                 className={styles.authorImage}
                 width={40}
                 height={40}
