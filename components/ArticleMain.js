@@ -33,7 +33,10 @@ const styles = {
 };
 
 const ArticleMain = ({ post, author }) => {
-  console.log(author, "Checking");
+  console.log(post, "Checking");
+
+  const { bannerImage } = post.data;
+  const { imageUrl } = author.data;
 
   return (
     <div className={styles.wrapper}>
@@ -43,7 +46,7 @@ const ArticleMain = ({ post, author }) => {
             <div className={styles.authorProfileImageContainer}>
               <Image
                 className={"object-cover"}
-                src={Qazi}
+                src={`https://res.cloudinary.com/demo/image/fetch/${imageUrl}`}
                 width={100}
                 height={100}
                 alt="Author Profile "
@@ -81,7 +84,7 @@ const ArticleMain = ({ post, author }) => {
           <div className={styles.bannerContainer}>
             <Image
               className={styles.image}
-              src={Banner}
+              src={`https://res.cloudinary.com/demo/image/fetch/${bannerImage}`}
               width={100}
               height={100}
               alt="Banner"
